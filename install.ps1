@@ -42,28 +42,10 @@ foreach ($m in $modules) {
 }
 
 # -------------------------------
-# 3. Oh My Posh Theme Selector
+# 3. Oh My Posh Configuration
 # -------------------------------
 
-$themePath = $env:POSH_THEMES_PATH
-$themes = Get-ChildItem $themePath -Filter *.omp.json | Select-Object -ExpandProperty Name
-
-Write-Host "`nAvailable Oh My Posh Themes:" -ForegroundColor Cyan
-$themes | ForEach-Object { Write-Host " - $_" }
-
-Write-Host "`nEnter theme name to use (default: pure.omp.json):" -ForegroundColor Yellow
-$selectedTheme = Read-Host
-
-if ([string]::IsNullOrWhiteSpace($selectedTheme)) {
-    $selectedTheme = "pure.omp.json"
-}
-
-if (-not ($themes -contains $selectedTheme)) {
-    Write-Host "Theme not found. Falling back to pure.omp.json" -ForegroundColor Yellow
-    $selectedTheme = "pure.omp.json"
-}
-
-Write-Host "Using theme: $selectedTheme" -ForegroundColor Green
+Write-Host "Configuring Oh My Posh with pure theme..." -ForegroundColor Cyan
 
 # -------------------------------
 # 4. Backup Existing Profile
@@ -93,7 +75,7 @@ Import-Module Terminal-Icons
 Import-Module PSReadLine
 
 # --- Oh My Posh Prompt ---
-oh-my-posh init pwsh --config "`$env:POSH_THEMES_PATH\$selectedTheme" | Invoke-Expression
+oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json" | Invoke-Expression
 
 # --- PSReadLine Enhancements ---
 Set-PSReadLineOption -PredictionSource History

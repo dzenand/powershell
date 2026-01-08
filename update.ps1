@@ -33,11 +33,11 @@ foreach ($m in $modules) {
 }
 
 # -------------------------------
-# 3. Update Oh My Posh Themes
+# 3. Oh My Posh Cache Cleanup
 # -------------------------------
 
-Write-Host "Updating Oh My Posh themes..."
-oh-my-posh get themes --update
+Write-Host "Clearing Oh My Posh cache..."
+oh-my-posh cache clear
 
 # -------------------------------
 # 4. Final Message
