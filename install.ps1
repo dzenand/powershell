@@ -96,9 +96,9 @@ Import-Module Terminal-Icons
 Import-Module PSReadLine
 
 # --- Oh My Posh Prompt ---
-$profileDir = Split-Path $PROFILE -Parent
-if (Test-Path "$profileDir\pure.omp.json") {
-    oh-my-posh init pwsh --config "$profileDir\pure.omp.json" | Invoke-Expression
+`$profileDir = Split-Path `$PROFILE -Parent
+if (Test-Path "`$profileDir\pure.omp.json") {
+    oh-my-posh init pwsh --config "`$profileDir\pure.omp.json" | Invoke-Expression
 } else {
     # Fallback to URL if local file doesn't exist
     oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json" | Invoke-Expression
