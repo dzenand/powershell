@@ -117,6 +117,47 @@ function gclean {
     git gc --prune=now --aggressive
 }
 
+function gprune {
+    Write-Host "Fetching latest from origin..." -ForegroundColor Cyan
+    git fetch --prune
+
+    Write-Host "Finding local branches not on origin..." -ForegroundColor Cyan
+
+    # Protected branches
+    \$protected = @("main", "master", "develop")
+
+    # Current branch
+    \$current = git rev-parse --abbrev-ref HEAD
+
+    # Branches to delete
+    \$branches = git branch --format="%(refname:short)" |
+        Where-Object {
+            \$_ -ne \$current -and
+            -not (\$protected -contains \$_) -and
+            -not (git show-ref --verify --quiet "refs/remotes/origin/\$_")
+        }
+
+    if (-not \$branches) {
+        Write-Host "No stale branches found." -ForegroundColor Green
+        return
+    }
+
+    Write-Host "`nThe following branches no longer exist on origin:" -ForegroundColor Yellow
+    \$branches | ForEach-Object { Write-Host " - \$_" }
+
+    \$confirm = Read-Host "`nDelete these branches? (y/N)"
+
+    if (\$confirm -eq "y") {
+        foreach (\$b in \$branches) {
+            git branch -D \$b
+            Write-Host "Deleted \$b" -ForegroundColor Red
+        }
+        Write-Host "`nCleanup complete." -ForegroundColor Green
+    } else {
+        Write-Host "Aborted." -ForegroundColor Yellow
+    }
+}
+
 # --- SQL Helpers (local dev) ---
 function sqlrun {
     param([string]`$query)
@@ -132,14 +173,4 @@ function ... { Set-Location ../.. }
 `$env:EDITOR = "code"
 
 # --- Welcome Message ---
-Write-Host "Loaded Power Developer Profile ✔" -ForegroundColor Cyan
-"@
-
-Set-Content -Path $PROFILE -Value $profileContent -Encoding UTF8
-
-# -------------------------------
-# 6. Final Message
-# -------------------------------
-
-Write-Host "`n=== Setup Complete ===" -ForegroundColor Green
-Write-Host "Restart Windows Terminal and set your font to 'Cascadia Code Nerd Font'." -ForegroundColor Cyan
+Write-Host "Loaded Power Developer Profile
