@@ -9,7 +9,8 @@ $packages = @(
     "Git.Git",
     "JanDeDobbeleer.OhMyPosh",
     "NerdFonts.CascadiaCode",
-    "eza-community.eza"   
+    "eza-community.eza",
+    "Schniz.fnm"
 )
 
 foreach ($pkg in $packages) {

@@ -20,6 +20,7 @@ Install-App Git.Git
 Install-App JanDeDobbeleer.OhMyPosh
 Install-App NerdFonts.CascadiaCode
 Install-App eza-community.eza
+Install-App Schniz.fnm
 
 # -------------------------------
 # 2. Install PowerShell Modules
