@@ -2,10 +2,6 @@
 
 A clean, modern PowerShell + Windows Terminal setup for developers.
 
-# Power Developer Terminal Setup
-
-A clean, modern PowerShell + Windows Terminal setup for developers.
-
 ## Contents
 
 - `install.ps1` – Installs all dependencies and generates your PowerShell profile.
