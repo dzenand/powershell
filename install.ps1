@@ -21,6 +21,7 @@ Install-App JanDeDobbeleer.OhMyPosh
 Install-App NerdFonts.CascadiaCode
 Install-App eza-community.eza
 Install-App Schniz.fnm
+Install-App ajeetdsouza.zoxide
 
 # -------------------------------
 # 2. Install PowerShell Modules

@@ -10,7 +10,8 @@ $packages = @(
     "JanDeDobbeleer.OhMyPosh",
     "NerdFonts.CascadiaCode",
     "eza-community.eza",
-    "Schniz.fnm"
+    "Schniz.fnm",
+    "ajeetdsouza.zoxide"
 )
 
 foreach ($pkg in $packages) {
