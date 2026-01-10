@@ -11,7 +11,8 @@ $packages = @(
     "NerdFonts.CascadiaCode",
     "eza-community.eza",
     "Schniz.fnm",
-    "ajeetdsouza.zoxide"
+    "ajeetdsouza.zoxide",
+    "junegunn.fzf"
 )
 
 foreach ($pkg in $packages) {
@@ -26,7 +27,8 @@ foreach ($pkg in $packages) {
 $modules = @(
     "posh-git",
     "Terminal-Icons",
-    "PSReadLine"
+    "PSReadLine",
+    "PSFzf"
 )
 
 foreach ($m in $modules) {

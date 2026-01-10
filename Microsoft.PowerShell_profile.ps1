@@ -6,6 +6,9 @@
 Import-Module posh-git
 Import-Module Terminal-Icons
 Import-Module PSReadLine
+if (Get-Module -ListAvailable -Name PSFzf) {
+    Import-Module PSFzf
+}
 
 # --- Oh My Posh Prompt ---
 $profileDir = Split-Path $PROFILE -Parent
@@ -25,6 +28,17 @@ if (Get-Command fnm -ErrorAction SilentlyContinue) {
 # --- Zoxide (smarter cd) ---
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
+}
+
+# --- FZF (fuzzy finder) ---
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+    # Set default options for fzf
+    $env:FZF_DEFAULT_OPTS = '--height 40% --layout=reverse --border'
+    
+    # PSFzf keybindings (if module is available)
+    if (Get-Module -Name PSFzf) {
+        Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+    }
 }
 
 # --- PSReadLine Enhancements ---

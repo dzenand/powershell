@@ -22,6 +22,7 @@ Install-App NerdFonts.CascadiaCode
 Install-App eza-community.eza
 Install-App Schniz.fnm
 Install-App ajeetdsouza.zoxide
+Install-App junegunn.fzf
 
 # -------------------------------
 # 2. Install PowerShell Modules
@@ -30,7 +31,8 @@ Install-App ajeetdsouza.zoxide
 $modules = @(
     "posh-git",
     "Terminal-Icons",
-    "PSReadLine"
+    "PSReadLine",
+    "PSFzf"
 )
 
 foreach ($m in $modules) {
