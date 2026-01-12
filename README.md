@@ -4,7 +4,7 @@ A clean, modern PowerShell + Windows Terminal setup for developers.
 
 ## Contents
 
-- `install.ps1` – Installs all dependencies and generates your PowerShell profile.
+- `install.ps1` – Installs all dependencies and copies your PowerShell profile.
 - `update.ps1` – Updates all installed tools and modules.
 
 ## Installation
