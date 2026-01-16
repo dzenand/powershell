@@ -75,12 +75,17 @@ function gprune {
     # Current branch
     $current = git rev-parse --abbrev-ref HEAD
 
-    # Branches to delete
+    # Get all remote branches that exist on origin
+    $remoteBranches = git branch -r --format="%(refname:short)" | 
+    Where-Object { $_ -like "origin/*" } | 
+    ForEach-Object { $_.Replace("origin/", "") }
+
+    # Branches to delete (local branches that don't exist on origin)
     $branches = git branch --format="%(refname:short)" |
     Where-Object {
         $_ -ne $current -and
         -not ($protected -contains $_) -and
-        -not (git show-ref --verify --quiet "refs/remotes/origin/$_")
+        -not ($remoteBranches -contains $_)
     }
 
     if (-not $branches) {
